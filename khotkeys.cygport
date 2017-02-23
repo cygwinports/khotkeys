@@ -1,0 +1,29 @@
+inherit kf5
+
+NAME="khotkeys"
+VERSION=5.8.5
+RELEASE=1
+CATEGORY="KDE"
+SUMMARY="KDE keyboard shortcuts settings module"
+DESCRIPTION="The Custom Shortcuts KDE settings module allows you to configure
+custom keyboard shortcuts and mouse gestures.  You can use them to control
+applications, run specific commands, and more."
+SRC_URI="mirror://kde/stable/plasma/${VERSION}/${NAME}-${VERSION}.tar.xz"
+
+PKG_NAMES="${NAME} ${NAME}-devel"
+khotkeys_CONTENTS="
+	usr/bin/cygkhotkeysprivate-5.dll
+	usr/lib/qt5/plugins/kcm_hotkeys.dll
+	usr/lib/qt5/plugins/kf5/kded/khotkeys.dll
+	usr/share/doc/HTML/en/kcontrol/khotkeys/
+	usr/share/doc/khotkeys/
+	usr/share/khotkeys/
+	usr/share/kservices5/khotkeys.desktop
+	usr/share/locale/*/LC_MESSAGES/khotkeys.mo
+"
+khotkeys_devel_REQUIRES=${NAME}
+khotkeys_devel_CONTENTS="
+	usr/lib/cmake/KHotKeysDBusInterface/
+	usr/share/dbus-1/interfaces/org.kde.khotkeys.xml
+"
+PKG_IGNORE="usr/lib/libkhotkeysprivate.dll.a"
